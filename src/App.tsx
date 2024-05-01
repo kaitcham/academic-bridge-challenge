@@ -1,3 +1,4 @@
+import { Filters } from "./components/Filters";
 import { SideNavbar } from "./components/SideNavbar";
 import { TopNavbar } from "./components/TopNavbar";
 import { useGlobalContext } from "./context/GlobalContext";
@@ -17,6 +18,7 @@ function App() {
               <h1 className="mb-4 hidden text-2xl font-semibold sm:block dark:text-slate-50">
                 Dashboard
               </h1>
+              <Filters />
             </div>
           </div>
         </div>
