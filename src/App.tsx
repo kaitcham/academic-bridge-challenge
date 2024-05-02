@@ -1,9 +1,12 @@
 import { Filters } from "./components/Filters";
 import { SideNavbar } from "./components/SideNavbar";
+import { TodoCard } from "./components/TodoCard";
 import { TopNavbar } from "./components/TopNavbar";
 import { useGlobalContext } from "./context/GlobalContext";
+import { Todo, useTodosContext } from "./context/TodosContext";
 
 function App() {
+  const { todos } = useTodosContext();
   const { isDarkMode } = useGlobalContext();
   return (
     <section
@@ -20,6 +23,11 @@ function App() {
               </h1>
               <Filters />
             </div>
+          </div>
+          <div className="grid gap-8 p-2 sm:grid-cols-2 sm:p-5 md:grid-cols-3 lg:grid-cols-4">
+            {todos.map((todo: Todo) => (
+              <TodoCard key={todo.id} todo={todo} />
+            ))}
           </div>
         </div>
       </div>
