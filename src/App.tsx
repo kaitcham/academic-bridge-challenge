@@ -1,6 +1,8 @@
+import { DeleteModal } from "./components/DeleteModal";
 import { Filters } from "./components/Filters";
 import { SideNavbar } from "./components/SideNavbar";
 import { TodoCard } from "./components/TodoCard";
+import { TodoFormModal } from "./components/TodoFormModal";
 import { TopNavbar } from "./components/TopNavbar";
 import { useGlobalContext } from "./context/GlobalContext";
 import { Todo, useTodosContext } from "./context/TodosContext";
@@ -31,6 +33,8 @@ function App() {
           </div>
         </div>
       </div>
+      <DeleteModal />
+      <TodoFormModal />
     </section>
   );
 }
