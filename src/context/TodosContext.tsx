@@ -8,7 +8,7 @@ import {
 
 export interface Todo {
   id: number;
-  title: string;
+  todo: string;
   userId: number;
   completed: boolean;
 }
@@ -34,11 +34,11 @@ export const TodosProvider = ({ children }: PropsWithChildren<{}>) => {
   const [selectedOption, setSelectedOption] = useState("All Tasks");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch("https://dummyjson.com/todos")
       .then((res) => res.json())
       .then((data) => {
-        setAllTodos(data);
-        setFetchedTodos(data);
+        setAllTodos(data.todos);
+        setFetchedTodos(data.todos);
       });
   }, []);
 

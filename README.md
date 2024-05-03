@@ -19,19 +19,19 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repository:
 
-  - ```git clone https://github.com/kaitcham/academic-bridge-challenge.git```
+- `git clone https://github.com/kaitcham/academic-bridge-challenge.git`
 
 2. Navigate into the project directory:
 
-  - ```cd project-name```
+- `cd project-name`
 
 3. Install dependencies:
 
-  - ```npm install```
+- `npm install`
 
 4. Start the development server:
 
-  - ```npm run dev```
+- `npm run dev`
 
 This will start the Vite development server. You can now open your browser and navigate to `http://localhost:5173/` to see your application.
 
@@ -45,6 +45,10 @@ This will start the Vite development server. You can now open your browser and n
 - [x] Add a clear and concise readme that explains all the needed steps to deploy and run tests of the project in a local environment
 - [ ] Add support for i18n (English and French)
 - [ ] Unit & component tests (just enough to showcase your testing skills)
+
+## What Challenged me.
+
+- Working with dummyjson when it doesn't update the serve (database), this makes it impossible to perform an action on a newly create todo.
 
 ## Contributing
 

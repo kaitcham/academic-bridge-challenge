@@ -1,4 +1,5 @@
 import { Todo, useTodosContext } from "../context/TodosContext";
+import { updateTodo } from "../utils/requests";
 import MoreOption from "./MoreOption";
 
 interface TodoCardProps {
@@ -8,12 +9,19 @@ interface TodoCardProps {
 export const TodoCard = ({ todo }: TodoCardProps) => {
   const { allTodos, setAllTodos } = useTodosContext();
 
-  const handleChangle = () => {
-    const updatedTodo = { ...todo, completed: !todo.completed };
-    const updatedTodos = allTodos.map((t) =>
-      t.id === todo.id ? updatedTodo : t,
-    );
-    setAllTodos(updatedTodos);
+  const handleChangle = async () => {
+    try {
+      const updatedTodo = await updateTodo({
+        ...todo,
+        completed: !todo.completed,
+      });
+      const updatedTodos = allTodos.map((todo) =>
+        todo.id === updatedTodo.id ? updatedTodo : todo,
+      );
+      setAllTodos(updatedTodos);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const styles = todo.completed
@@ -29,7 +37,7 @@ export const TodoCard = ({ todo }: TodoCardProps) => {
         <MoreOption todo={todo} />
       </div>
       <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        {todo.title}
+        {todo.todo}
       </p>
       <div className="mt-5 flex items-center justify-between">
         <div className="flex items-center gap-2">

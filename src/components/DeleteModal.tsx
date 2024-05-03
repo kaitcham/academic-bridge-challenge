@@ -15,8 +15,8 @@ export const DeleteModal = () => {
   const handleDelete = async () => {
     if (typeof todo === "string") return;
     try {
-      await deleteTodo(todo.id);
-      const updatedTodos = allTodos.filter((t) => t.id !== todo.id);
+      const res = await deleteTodo(todo.id);
+      const updatedTodos = allTodos.filter((t) => t.id !== res.id);
       setAllTodos(updatedTodos);
     } catch (error) {
       console.error(error);

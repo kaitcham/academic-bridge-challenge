@@ -17,7 +17,7 @@ export const TopNavbar = () => {
       return;
     }
     const filteredTodos = fetchedTodos.filter((todo) =>
-      todo.title.toLowerCase().includes(e.target.value.toLowerCase()),
+      todo.todo.toLowerCase().includes(e.target.value.toLowerCase()),
     );
     setAllTodos(filteredTodos);
   };

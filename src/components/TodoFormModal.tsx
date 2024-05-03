@@ -18,7 +18,7 @@ export const TodoFormModal = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!isUpdating) setTodo(e.target.value);
-    else setTodo({ ...(todo as Todo), title: e.target.value });
+    else setTodo({ ...(todo as Todo), todo: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ export const TodoFormModal = () => {
     try {
       if (!isUpdating) {
         const newTodo = await createTodo({
-          title: todo as string,
+          todo: todo as string,
           completed: false,
           userId: 1,
         });
@@ -92,7 +92,7 @@ export const TodoFormModal = () => {
                       ref={(el) =>
                         el?.setSelectionRange(el.value.length, el.value.length)
                       }
-                      value={typeof todo === "string" ? todo : todo.title}
+                      value={typeof todo === "string" ? todo : todo.todo}
                       onChange={handleChange}
                       placeholder="Enter your task here..."
                       className="w-full rounded-md border px-2 py-1"
