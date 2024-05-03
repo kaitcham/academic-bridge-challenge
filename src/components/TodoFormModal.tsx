@@ -5,7 +5,8 @@ import { Todo, useTodosContext } from "../context/TodosContext";
 import { createTodo, updateTodo } from "../utils/requests";
 
 export const TodoFormModal = () => {
-  const { todo, allTodos, setTodo, setAllTodos } = useTodosContext();
+  const { todo, allTodos, setTodo, setAllTodos, setFetchedTodos } =
+    useTodosContext();
   const { isUpdating, isFormModalOpen, setIsFormModalOpen, setIsUpdating } =
     useGlobalContext();
 
@@ -29,14 +30,16 @@ export const TodoFormModal = () => {
           completed: false,
           userId: 1,
         });
-        setAllTodos([newTodo, ...allTodos]);
+        const updatedTodos = [newTodo, ...allTodos];
+        setAllTodos(updatedTodos);
+        setFetchedTodos(updatedTodos);
       } else {
         const updatedTodo = await updateTodo(todo as Todo);
-        setAllTodos(
-          allTodos.map((todo) =>
-            todo.id === updatedTodo.id ? updatedTodo : todo,
-          ),
+        const updatedTodos = allTodos.map((todo) =>
+          todo.id === updatedTodo.id ? updatedTodo : todo,
         );
+        setAllTodos(updatedTodos);
+        setFetchedTodos(updatedTodos);
       }
     } catch (error) {
       console.error(error);

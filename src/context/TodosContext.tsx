@@ -16,11 +16,13 @@ export interface Todo {
 interface ContextProps {
   todos: Todo[];
   allTodos: Todo[];
+  fetchedTodos: Todo[];
   todo: Todo | string;
   selectedOption: string;
-  setTodo: (todo: Todo | string) => void;
   setAllTodos: (todos: Todo[]) => void;
+  setTodo: (todo: Todo | string) => void;
   setSelectedOption: (option: string) => void;
+  setFetchedTodos: (fetchedTodos: Todo[]) => void;
 }
 
 export const TodosContext = createContext({} as ContextProps);
@@ -28,12 +30,16 @@ export const TodosContext = createContext({} as ContextProps);
 export const TodosProvider = ({ children }: PropsWithChildren<{}>) => {
   const [todo, setTodo] = useState<Todo | string>("");
   const [allTodos, setAllTodos] = useState<Todo[]>([]);
+  const [fetchedTodos, setFetchedTodos] = useState<Todo[]>([]);
   const [selectedOption, setSelectedOption] = useState("All Tasks");
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
-      .then((data) => setAllTodos(data));
+      .then((data) => {
+        setAllTodos(data);
+        setFetchedTodos(data);
+      });
   }, []);
 
   const todos = allTodos.filter((todo) => {
@@ -50,9 +56,11 @@ export const TodosProvider = ({ children }: PropsWithChildren<{}>) => {
         todo,
         todos,
         allTodos,
+        fetchedTodos,
         selectedOption,
         setTodo,
         setAllTodos,
+        setFetchedTodos,
         setSelectedOption,
       }}
     >
